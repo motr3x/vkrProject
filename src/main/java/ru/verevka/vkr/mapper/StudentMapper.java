@@ -11,5 +11,7 @@ public interface StudentMapper {
     @Mappings({
             @Mapping(source = "vkr.title", target = "vkrTitle")})
     StudentDto studentToStudentDto(Student student);
+    @Mappings({
+            @Mapping(source = "vkrTitle", target = "vkr.title")})
     Student studentDtoToStudent(StudentDto studentDto);
 }

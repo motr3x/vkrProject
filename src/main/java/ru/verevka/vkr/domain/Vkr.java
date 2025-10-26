@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,6 +35,7 @@ public class Vkr {
     private String title;
     private Long finalGrade;
     private Double overallProgress;
+    private Date lastUpdate = new Date();
 
     @OneToMany(mappedBy = "vkr", cascade = CascadeType.ALL)
     private List<VkrStage> vkrStages;

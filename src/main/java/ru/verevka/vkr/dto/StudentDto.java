@@ -16,5 +16,4 @@ public class StudentDto {
     private String characteristic;
     private String groupName;
     private String vkrTitle;
-    private String initialsSupervisors;
 }
