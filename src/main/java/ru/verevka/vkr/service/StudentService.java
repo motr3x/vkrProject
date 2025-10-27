@@ -40,10 +40,10 @@ public class StudentService {
         return "Student was deleted";
     }
     @Transactional
-    public Student saveStudent(StudentDto student){
+    public StudentDto saveStudent(StudentDto student){
         Vkr newVkr = new Vkr();
         newVkr.setTitle(student.getVkrTitle());
-        return studentRepository.save(studentMapper.studentDtoToStudent(student));
+        return studentMapper.studentToStudentDto(studentRepository.save(studentMapper.studentDtoToStudent(student)));
     }
 
     @Transactional

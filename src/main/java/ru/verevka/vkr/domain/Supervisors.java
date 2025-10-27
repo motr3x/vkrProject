@@ -5,12 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -26,7 +29,10 @@ public class Supervisors {
     private String middleName;
     private String academicDegree;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vkr_id", referencedColumnName = "id")
-    private Vkr vkr;
+
+    @OneToMany(mappedBy = "supervisors", cascade = CascadeType.ALL)
+    private List<Vkr> vkr = new ArrayList<>();
+
+    @Transient
+    private List<String> vkrTitle = !this.getVkr().isEmpty() ? this.getVkr().stream().map(Vkr::getTitle).toList() : new ArrayList<>();
 }
