@@ -1,25 +1,18 @@
 package ru.verevka.vkr.dto;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.verevka.vkr.domain.Vkr;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SupervisorsDto {
+public class SupervisorsCreateDto {
     private String firstName;
     private String secondName;
     private String middleName;
     private String academicDegree;
-    private List<String> vkrTitle;
 }
 

@@ -1,14 +1,18 @@
 package ru.verevka.vkr.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.verevka.vkr.domain.Student;
+import ru.verevka.vkr.domain.Supervisors;
 import ru.verevka.vkr.dto.StudentDto;
+import ru.verevka.vkr.dto.SupervisorsCreateDto;
 import ru.verevka.vkr.dto.SupervisorsDto;
 import ru.verevka.vkr.exception.StudentNotFoundException;
 import ru.verevka.vkr.exception.SupervisorNotFoundException;
 import ru.verevka.vkr.mapper.StudentMapper;
 import ru.verevka.vkr.mapper.SupervisorsMapper;
 import ru.verevka.vkr.repository.SupervisorsRepository;
+import ru.verevka.vkr.repository.VkrRepository;
 
 import java.util.List;
 
@@ -16,14 +20,14 @@ import java.util.List;
 public class SupervisorsService {
     private final SupervisorsRepository supervisorsRepository;
     private final SupervisorsMapper supervisorsMapper;
-    private final StudentService studentService;
     private final StudentMapper studentMapper;
+    private final VkrService vkrService;
 
-    public SupervisorsService(SupervisorsRepository supervisorsRepository, SupervisorsMapper supervisorsMapper, StudentService studentService, StudentMapper studentMapper) {
+    public SupervisorsService(SupervisorsRepository supervisorsRepository, SupervisorsMapper supervisorsMapper,StudentMapper studentMapper, VkrService vkrService) {
         this.supervisorsRepository = supervisorsRepository;
         this.supervisorsMapper = supervisorsMapper;
-        this.studentService = studentService;
         this.studentMapper = studentMapper;
+        this.vkrService = vkrService;
     }
     
     public SupervisorsDto getSupervisorsById(Long id) {
@@ -33,5 +37,38 @@ public class SupervisorsService {
     public List<StudentDto> getAllStudent(Long id) {
         return supervisorsRepository.getAllStudentById(id).orElseThrow(() -> new StudentNotFoundException("Student with id " + id + " doesn't found"))
                 .stream().map(studentMapper::studentToStudentDto).toList();
+    }
+
+    public SupervisorsDto saveSupervisor(SupervisorsCreateDto supervisorsCreateDto) {
+        return supervisorsMapper.supervisorsToSupervisorsDto(supervisorsRepository.save(supervisorsMapper.supervisorCreateDtoToSupervisors(supervisorsCreateDto)));
+    }
+
+    @Transactional
+    public String removeStudentById(Long id) {
+        supervisorsRepository.removeById(supervisorsRepository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor with id " + " doesn't found")).getId());
+        return "Supervisor was deleted";
+    }
+
+    @Transactional
+    public SupervisorsDto updateSupervisorById(Long id, SupervisorsDto supervisorsDto) {
+        Supervisors existingSupervisor = supervisorsRepository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor with id " + id + " in doesn't found"));
+        if(supervisorsDto.getAcademicDegree() != null)
+            existingSupervisor.setAcademicDegree(supervisorsDto.getAcademicDegree());
+        if(supervisorsDto.getFirstName() != null)
+            existingSupervisor.setFirstName(supervisorsDto.getFirstName());
+        if(supervisorsDto.getMiddleName() != null)
+            existingSupervisor.setMiddleName(supervisorsDto.getMiddleName());
+        if(supervisorsDto.getSecondName() != null)
+            existingSupervisor.setSecondName(supervisorsDto.getSecondName());
+        if(!supervisorsDto.getVkrTitle().isEmpty()){
+            existingSupervisor.getVkr().forEach(vkr -> vkr.setSupervisors(null));
+            // Set vkr to entity from dto
+            existingSupervisor.setVkr(supervisorsDto.getVkrTitle().stream().map(vkrService::getVkrByTitle).toList());
+            // Set supervisor id to vkr
+            existingSupervisor.getVkr().forEach(vkr -> vkr.setSupervisors(supervisorsRepository.findById(id).get()));
+        }
+        vkrService.removeIfSupervisorIsNull();
+
+        return supervisorsMapper.supervisorsToSupervisorsDto(existingSupervisor);
     }
 }

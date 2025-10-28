@@ -11,19 +11,16 @@ import ru.verevka.vkr.repository.StudentRepository;
 import ru.verevka.vkr.repository.VkrRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentService {
 
-    private final VkrRepository vkrRepository;
     private final StudentMapper studentMapper;
     private final StudentRepository studentRepository;
 
-    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper, VkrRepository vkrRepository) {
+    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper) {
         this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
-        this.vkrRepository = vkrRepository;
     }
 
     public StudentDto getStudentById(Long id){

@@ -1,10 +1,10 @@
 package ru.verevka.vkr.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.verevka.vkr.domain.Vkr;
 import ru.verevka.vkr.repository.VkrRepository;
 
-import java.util.Optional;
 
 @Service
 public class VkrService {
@@ -14,8 +14,12 @@ public class VkrService {
         this.vkrRepository = vkrRepository;
     }
 
-    public Optional<Vkr> getVkrById(Long id){
-        return vkrRepository.findById(id);
+    public Vkr getVkrByTitle(String title){
+        return vkrRepository.findByTitle(title).orElseThrow();
     }
 
+    @Transactional
+    public void removeIfSupervisorIsNull() {
+        vkrRepository.removeIfSupervisorIsNull();
+    }
 }

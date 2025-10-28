@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.verevka.vkr.domain.Student;
 import ru.verevka.vkr.dto.StudentDto;
 import ru.verevka.vkr.service.StudentService;
 

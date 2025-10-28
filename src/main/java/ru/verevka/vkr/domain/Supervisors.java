@@ -32,7 +32,4 @@ public class Supervisors {
 
     @OneToMany(mappedBy = "supervisors", cascade = CascadeType.ALL)
     private List<Vkr> vkr = new ArrayList<>();
-
-    @Transient
-    private List<String> vkrTitle = !this.getVkr().isEmpty() ? this.getVkr().stream().map(Vkr::getTitle).toList() : new ArrayList<>();
 }
