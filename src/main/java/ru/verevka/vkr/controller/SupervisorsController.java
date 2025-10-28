@@ -46,7 +46,8 @@ public class SupervisorsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SupervisorsDto> updateSupervisor(@PathVariable Long id, @RequestBody SupervisorsDto supervisorsDto){
+    public ResponseEntity<SupervisorsDto> updateSupervisor(@PathVariable Long id,
+                                                           @RequestBody SupervisorsDto supervisorsDto){
         return ResponseEntity.ok(supervisorsService.updateSupervisorById(id, supervisorsDto));
     }
 }

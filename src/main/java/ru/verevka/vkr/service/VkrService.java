@@ -3,6 +3,7 @@ package ru.verevka.vkr.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.verevka.vkr.domain.Vkr;
+import ru.verevka.vkr.exception.VkrNotFoundException;
 import ru.verevka.vkr.repository.VkrRepository;
 
 
@@ -16,6 +17,11 @@ public class VkrService {
 
     public Vkr getVkrByTitle(String title){
         return vkrRepository.findByTitle(title).orElseThrow();
+    }
+
+
+    public Vkr getVkrById(Long id){
+        return vkrRepository.findById(id).orElseThrow(()->new VkrNotFoundException("Vkr with this id " + id + " doesn't found"));
     }
 
     @Transactional

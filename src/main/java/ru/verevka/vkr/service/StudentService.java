@@ -43,6 +43,7 @@ public class StudentService {
         return studentMapper.studentToStudentDto(studentRepository.save(studentMapper.studentDtoToStudent(student)));
     }
 
+    //todo Add validation to drop many if statement
     @Transactional
     public StudentDto updateStudentById(Long id, StudentDto studentDto) {
         Student existingStudent = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student with id " + id + " in doesn't found"));

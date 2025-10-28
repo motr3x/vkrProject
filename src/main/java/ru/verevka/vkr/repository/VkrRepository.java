@@ -11,8 +11,6 @@ import java.util.Optional;
 @Repository
 public interface VkrRepository extends JpaRepository<Vkr,Long> {
     Optional<Vkr> findByTitle(String title);
-
-    void removeByTitle(String title);
     @Query(value = "DELETE FROM vkr WHERE supervisors_id is null;", nativeQuery = true)
     @Modifying
     void removeIfSupervisorIsNull();

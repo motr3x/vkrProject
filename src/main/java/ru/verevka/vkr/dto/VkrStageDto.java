@@ -1,30 +1,18 @@
-package ru.verevka.vkr.domain;
+package ru.verevka.vkr.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.verevka.vkr.domain.Status;
 
 import java.util.Date;
 
-@Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VkrStage {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    private Vkr vkr;
-
+public class VkrStageDto {
     private String title;
     private Date plannedDeadline;
     private Status status;

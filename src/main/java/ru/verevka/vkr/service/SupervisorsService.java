@@ -2,7 +2,6 @@ package ru.verevka.vkr.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.verevka.vkr.domain.Student;
 import ru.verevka.vkr.domain.Supervisors;
 import ru.verevka.vkr.dto.StudentDto;
 import ru.verevka.vkr.dto.SupervisorsCreateDto;
@@ -12,7 +11,6 @@ import ru.verevka.vkr.exception.SupervisorNotFoundException;
 import ru.verevka.vkr.mapper.StudentMapper;
 import ru.verevka.vkr.mapper.SupervisorsMapper;
 import ru.verevka.vkr.repository.SupervisorsRepository;
-import ru.verevka.vkr.repository.VkrRepository;
 
 import java.util.List;
 
@@ -49,6 +47,7 @@ public class SupervisorsService {
         return "Supervisor was deleted";
     }
 
+    //todo Add validation to drop many if statement
     @Transactional
     public SupervisorsDto updateSupervisorById(Long id, SupervisorsDto supervisorsDto) {
         Supervisors existingSupervisor = supervisorsRepository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor with id " + id + " in doesn't found"));

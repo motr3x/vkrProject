@@ -14,8 +14,4 @@ public interface SupervisorsMapper {
     SupervisorsDto supervisorsToSupervisorsDto(Supervisors supervisors);
     @Mapping(target = "vkr", ignore = true)
     Supervisors supervisorCreateDtoToSupervisors(SupervisorsCreateDto supervisorsCreateDto);
-//    @Mappings({
-//            @Mapping(source = "vkrTitle", target = "vkr.title")})
-//    Supervisors supervisorsDtoToSupervisors(SupervisorsDto supervisorsDto);
-
 }
