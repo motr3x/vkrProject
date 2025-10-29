@@ -1,11 +1,12 @@
 package ru.verevka.vkr.dto;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.verevka.vkr.domain.Status;
 
 import java.util.Date;
 
@@ -18,8 +19,10 @@ public class VkrStageDto {
     private String title;
     @NotBlank
     private Date plannedDeadline;
+    @Enumerated(EnumType.STRING)
     private Status status;
     private Double stageProgress;
     private String description;
     private String supervisorFeedback;
 }
+

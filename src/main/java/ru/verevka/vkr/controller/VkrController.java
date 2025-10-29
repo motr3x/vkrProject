@@ -36,7 +36,7 @@ public class VkrController {
         return ResponseEntity.ok(vkrService.getAll());
     }
 
-    @GetMapping("/{/supervisorId}")
+    @GetMapping("/{supervisorId}")
     public ResponseEntity<List<VkrDto>> getAllBySupervisorId(@PathVariable Long supervisorId){
         return ResponseEntity.ok(vkrService.getAllBySupervisorId(supervisorId));
     }

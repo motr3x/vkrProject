@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: your_name
+      changes:
+        - createTable:
+            tableName: vkr_stage
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: vkr_id
+                  type: bigint
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: planned_deadline
+                  type: datetime
+              - column:
+                  name: status
+                  type: varchar(50)
+                  defaultValue: 'NOT_STARTED'
+              - column:
+                  name: stage_progress
+                  type: double
+                  defaultValue: 0.0
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: supervisor_feedback
+                  type: text
+        - addForeignKeyConstraint:
+            baseTableName: vkr_stage
+            baseColumnNames: vkr_id
+            referencedTableName: vkr
+            referencedColumnNames: id
+            constraintName: fk_vkr_stage_vkr

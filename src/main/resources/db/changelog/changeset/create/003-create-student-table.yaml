@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: your_name
+      changes:
+        - createTable:
+            tableName: student
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+              - column:
+                  name: second_name
+                  type: varchar(255)
+              - column:
+                  name: middle_name
+                  type: varchar(255)
+              - column:
+                  name: characteristic
+                  type: text
+              - column:
+                  name: group_name
+                  type: varchar(255)
+              - column:
+                  name: vkr_id
+                  type: bigint
+                  constraints:
+                    unique: true
+        - addForeignKeyConstraint:
+            baseTableName: student
+            baseColumnNames: vkr_id
+            referencedTableName: vkr
+            referencedColumnNames: id
+            constraintName: fk_student_vkr

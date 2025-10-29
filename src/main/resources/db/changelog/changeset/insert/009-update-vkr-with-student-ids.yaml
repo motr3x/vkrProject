@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 9
+      author: your_name
+      changes:
+        - update:
+            tableName: vkr
+            columns:
+              - column:
+                  name: student_id
+                  value: 1
+            where: "id = 1"
+        - update:
+            tableName: vkr
+            columns:
+              - column:
+                  name: student_id
+                  value: 2
+            where: "id = 2"
+        - update:
+            tableName: vkr
+            columns:
+              - column:
+                  name: student_id
+                  value: 3
+            where: "id = 3"
+        - update:
+            tableName: vkr
+            columns:
+              - column:
+                  name: student_id
+                  value: 4
+            where: "id = 4"
+        - update:
+            tableName: vkr
+            columns:
+              - column:
+                  name: student_id
+                  value: 5
+            where: "id = 5"
