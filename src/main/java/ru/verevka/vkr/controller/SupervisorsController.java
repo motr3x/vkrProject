@@ -1,5 +1,6 @@
 package ru.verevka.vkr.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,7 @@ public class SupervisorsController {
     }
 
     @PostMapping()
-    public ResponseEntity<SupervisorsDto> create(@RequestBody SupervisorsCreateDto supervisorsDto){
+    public ResponseEntity<SupervisorsDto> create(@Valid @RequestBody SupervisorsCreateDto supervisorsDto){
         return ResponseEntity.ok(supervisorsService.save(supervisorsDto));
     }
 
@@ -47,7 +48,7 @@ public class SupervisorsController {
 
     @PutMapping("/{id}")
     public ResponseEntity<SupervisorsDto> update(@PathVariable Long id,
-                                                           @RequestBody SupervisorsDto supervisorsDto){
+                                                 @Valid @RequestBody SupervisorsDto supervisorsDto){
         return ResponseEntity.ok(supervisorsService.update(id, supervisorsDto));
     }
 }

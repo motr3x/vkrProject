@@ -1,5 +1,6 @@
 package ru.verevka.vkr.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,7 @@ public class StudentController {
     }
 
     @PostMapping()
-    public ResponseEntity<StudentDto> add(@RequestBody StudentDto student){
+    public ResponseEntity<StudentDto> add(@Valid @RequestBody StudentDto student){
         return ResponseEntity.ok(studentService.save(student));
     }
 
@@ -45,7 +46,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StudentDto> updateById(@RequestBody StudentDto student,
+    public ResponseEntity<StudentDto> updateById(@Valid @RequestBody StudentDto student,
                                                         @PathVariable("id") Long id){
         return ResponseEntity.ok(studentService.update(id, student));
     }

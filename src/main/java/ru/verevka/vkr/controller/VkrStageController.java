@@ -1,5 +1,6 @@
 package ru.verevka.vkr.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,14 +37,14 @@ public class VkrStageController {
 
     @PostMapping("/{vkrId}")
     public ResponseEntity<VkrStageDto> create(@PathVariable Long vkrId,
-                                                      @RequestBody VkrStageDto vkrStageDto){
+                                              @Valid @RequestBody VkrStageDto vkrStageDto){
         return ResponseEntity.ok(vkrStageService.saveByVkr_Id(vkrId, vkrStageDto));
     }
 
     @PutMapping("/{vkrId}/stage/{stageId}")
     public ResponseEntity<VkrStageDto> update(@PathVariable Long vkrId,
                                                       @PathVariable Long stageId,
-                                                      @RequestBody VkrStageDto vkrStageDto){
+                                              @Valid @RequestBody VkrStageDto vkrStageDto){
         return ResponseEntity.ok(vkrStageService.update(vkrId, stageId, vkrStageDto));
     }
 

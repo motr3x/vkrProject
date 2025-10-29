@@ -27,8 +27,8 @@ public class VkrStage {
 
     private String title;
     private Date plannedDeadline;
-    private Status status;
-    private Double stageProgress;
+    private Status status = Status.NOT_STARTED;;
+    private Double stageProgress = 0.0;
     private String description;
     private String supervisorFeedback;
 }

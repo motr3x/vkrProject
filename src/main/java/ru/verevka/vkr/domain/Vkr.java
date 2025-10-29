@@ -37,9 +37,9 @@ public class Vkr {
 
     private String title;
     private Long finalGrade;
-    private Double overallProgress;
+    private Double overallProgress = 0.0D;
     private Date lastUpdate = new Date();
 
     @OneToMany(mappedBy = "vkr", cascade = CascadeType.ALL)
-    private List<VkrStage> vkrStages;
+    private List<VkrStage> vkrStages = new ArrayList<>();
 }
