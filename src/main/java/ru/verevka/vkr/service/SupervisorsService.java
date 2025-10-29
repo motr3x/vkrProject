@@ -70,4 +70,8 @@ public class SupervisorsService {
 
         return supervisorsMapper.supervisorsToSupervisorsDto(existingSupervisor);
     }
+
+    public List<SupervisorsDto> getAll() {
+        return supervisorsRepository.findAll().stream().map(supervisorsMapper::supervisorsToSupervisorsDto).toList();
+    }
 }

@@ -26,6 +26,10 @@ public class SupervisorsController {
         this.supervisorsService = supervisorsService;
     }
 
+    @GetMapping()
+    public ResponseEntity<List<SupervisorsDto>> getAll(){
+        return ResponseEntity.ok(supervisorsService.getAll());
+    }
     @GetMapping("/{id}")
     public ResponseEntity<SupervisorsDto> get(@PathVariable Long id){
         return ResponseEntity.ok(supervisorsService.getById(id));
