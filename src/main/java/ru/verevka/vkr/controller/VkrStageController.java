@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.verevka.vkr.dto.VkrStageDto;
 import ru.verevka.vkr.service.VkrStageService;
@@ -25,32 +24,32 @@ public class VkrStageController {
     }
 
     @GetMapping("/{vkrId}")
-    public ResponseEntity<List<VkrStageDto>> getAllVkrStageByVkrId(@PathVariable Long vkrId){
-        return ResponseEntity.ok(vkrStageService.getAllVkrStageByVkrId(vkrId));
+    public ResponseEntity<List<VkrStageDto>> getAllByVkrId(@PathVariable Long vkrId){
+        return ResponseEntity.ok(vkrStageService.getAllByVkrId(vkrId));
     }
 
     @GetMapping("/{vkrId}/stage/{stageId}")
-    public ResponseEntity<VkrStageDto> getVkrStageById(@PathVariable Long vkrId,
+    public ResponseEntity<VkrStageDto> getById(@PathVariable Long vkrId,
                                                        @PathVariable Long stageId){
-        return ResponseEntity.ok(vkrStageService.getVkrStageById(vkrId, stageId));
+        return ResponseEntity.ok(vkrStageService.getById(vkrId, stageId));
     }
 
     @PostMapping("/{vkrId}")
-    public ResponseEntity<VkrStageDto> createVkrStage(@PathVariable Long vkrId,
+    public ResponseEntity<VkrStageDto> create(@PathVariable Long vkrId,
                                                       @RequestBody VkrStageDto vkrStageDto){
-        return ResponseEntity.ok(vkrStageService.saveVkrStageByVkr_Id(vkrId, vkrStageDto));
+        return ResponseEntity.ok(vkrStageService.saveByVkr_Id(vkrId, vkrStageDto));
     }
 
     @PutMapping("/{vkrId}/stage/{stageId}")
-    public ResponseEntity<VkrStageDto> updateVkrStage(@PathVariable Long vkrId,
+    public ResponseEntity<VkrStageDto> update(@PathVariable Long vkrId,
                                                       @PathVariable Long stageId,
                                                       @RequestBody VkrStageDto vkrStageDto){
-        return ResponseEntity.ok(vkrStageService.updateVkrStage(vkrId, stageId, vkrStageDto));
+        return ResponseEntity.ok(vkrStageService.update(vkrId, stageId, vkrStageDto));
     }
 
     @DeleteMapping("/{vkrId}/stage/{stageId}")
-    public ResponseEntity<String> deleteVkrStage(@PathVariable Long vkrId,
+    public ResponseEntity<String> delete(@PathVariable Long vkrId,
                                                  @PathVariable Long stageId){
-        return ResponseEntity.ok(vkrStageService.removeById(vkrId, stageId));
+        return ResponseEntity.ok(vkrStageService.remove(vkrId, stageId));
     }
 }

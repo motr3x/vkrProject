@@ -26,8 +26,8 @@ public class SupervisorsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SupervisorsDto> getSupervisor(@PathVariable Long id){
-        return ResponseEntity.ok(supervisorsService.getSupervisorsById(id));
+    public ResponseEntity<SupervisorsDto> get(@PathVariable Long id){
+        return ResponseEntity.ok(supervisorsService.getById(id));
     }
 
     @GetMapping("/allStudents/{id}")
@@ -35,19 +35,19 @@ public class SupervisorsController {
         return ResponseEntity.ok(supervisorsService.getAllStudent(id));
     }
 
-    @PostMapping("")
-    public ResponseEntity<SupervisorsDto> createSupervisor(@RequestBody SupervisorsCreateDto supervisorsDto){
-        return ResponseEntity.ok(supervisorsService.saveSupervisor(supervisorsDto));
+    @PostMapping()
+    public ResponseEntity<SupervisorsDto> create(@RequestBody SupervisorsCreateDto supervisorsDto){
+        return ResponseEntity.ok(supervisorsService.save(supervisorsDto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteSupervisor(@PathVariable Long id){
-        return ResponseEntity.ok(supervisorsService.removeStudentById(id));
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        return ResponseEntity.ok(supervisorsService.remove(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SupervisorsDto> updateSupervisor(@PathVariable Long id,
+    public ResponseEntity<SupervisorsDto> update(@PathVariable Long id,
                                                            @RequestBody SupervisorsDto supervisorsDto){
-        return ResponseEntity.ok(supervisorsService.updateSupervisorById(id, supervisorsDto));
+        return ResponseEntity.ok(supervisorsService.update(id, supervisorsDto));
     }
 }

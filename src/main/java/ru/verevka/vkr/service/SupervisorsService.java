@@ -28,7 +28,7 @@ public class SupervisorsService {
         this.vkrService = vkrService;
     }
     
-    public SupervisorsDto getSupervisorsById(Long id) {
+    public SupervisorsDto getById(Long id) {
         return supervisorsMapper.supervisorsToSupervisorsDto(supervisorsRepository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor with id " + id + " doesn't found")));
     }
 
@@ -37,19 +37,19 @@ public class SupervisorsService {
                 .stream().map(studentMapper::studentToStudentDto).toList();
     }
 
-    public SupervisorsDto saveSupervisor(SupervisorsCreateDto supervisorsCreateDto) {
+    public SupervisorsDto save(SupervisorsCreateDto supervisorsCreateDto) {
         return supervisorsMapper.supervisorsToSupervisorsDto(supervisorsRepository.save(supervisorsMapper.supervisorCreateDtoToSupervisors(supervisorsCreateDto)));
     }
 
     @Transactional
-    public String removeStudentById(Long id) {
+    public String remove(Long id) {
         supervisorsRepository.removeById(supervisorsRepository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor with id " + " doesn't found")).getId());
         return "Supervisor was deleted";
     }
 
     //todo Add validation to drop many if statement
     @Transactional
-    public SupervisorsDto updateSupervisorById(Long id, SupervisorsDto supervisorsDto) {
+    public SupervisorsDto update(Long id, SupervisorsDto supervisorsDto) {
         Supervisors existingSupervisor = supervisorsRepository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor with id " + id + " in doesn't found"));
         if(supervisorsDto.getAcademicDegree() != null)
             existingSupervisor.setAcademicDegree(supervisorsDto.getAcademicDegree());
@@ -62,7 +62,7 @@ public class SupervisorsService {
         if(!supervisorsDto.getVkrTitle().isEmpty()){
             existingSupervisor.getVkr().forEach(vkr -> vkr.setSupervisors(null));
             // Set vkr to entity from dto
-            existingSupervisor.setVkr(supervisorsDto.getVkrTitle().stream().map(vkrService::getVkrByTitle).toList());
+            existingSupervisor.setVkr(supervisorsDto.getVkrTitle().stream().map(vkrService::getByTitle).toList());
             // Set supervisor id to vkr
             existingSupervisor.getVkr().forEach(vkr -> vkr.setSupervisors(supervisorsRepository.findById(id).get()));
         }

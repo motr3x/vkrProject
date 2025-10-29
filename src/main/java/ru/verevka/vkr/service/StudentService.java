@@ -23,21 +23,21 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
-    public StudentDto getStudentById(Long id){
+    public StudentDto getById(Long id){
         return studentMapper.studentToStudentDto(studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student with id " + id + " doesn't found.")));
     }
 
-    public List<StudentDto> getAllStudents(){
+    public List<StudentDto> getAll(){
         return  studentRepository.findAll().stream().map(studentMapper::studentToStudentDto).toList();
     }
 
     @Transactional
-    public String removeStudentById(Long id){
+    public String remove(Long id){
         studentRepository.removeById(studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student with id " + id + " in doesn't found")).getId());
         return "Student was deleted";
     }
     @Transactional
-    public StudentDto saveStudent(StudentDto student){
+    public StudentDto save(StudentDto student){
         Vkr newVkr = new Vkr();
         newVkr.setTitle(student.getVkrTitle());
         return studentMapper.studentToStudentDto(studentRepository.save(studentMapper.studentDtoToStudent(student)));
@@ -45,7 +45,7 @@ public class StudentService {
 
     //todo Add validation to drop many if statement
     @Transactional
-    public StudentDto updateStudentById(Long id, StudentDto studentDto) {
+    public StudentDto update(Long id, StudentDto studentDto) {
         Student existingStudent = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student with id " + id + " in doesn't found"));
         if(studentDto.getFirstName() != null)
             existingStudent.setFirstName(studentDto.getFirstName());

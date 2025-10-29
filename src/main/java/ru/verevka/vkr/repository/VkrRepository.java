@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.verevka.vkr.domain.Vkr;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -14,4 +15,7 @@ public interface VkrRepository extends JpaRepository<Vkr,Long> {
     @Query(value = "DELETE FROM vkr WHERE supervisors_id is null;", nativeQuery = true)
     @Modifying
     void removeIfSupervisorIsNull();
+    List<Vkr> getAllVkrBySupervisors_Id(Long supervisorId);
+
+    void removeById(Long id);
 }

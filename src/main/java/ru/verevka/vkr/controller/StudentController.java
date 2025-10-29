@@ -25,28 +25,28 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StudentDto> getStudentById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(studentService.getStudentById(id));
+    public ResponseEntity<StudentDto> getById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(studentService.getById(id));
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<StudentDto>> getAllStudents(){
-        return ResponseEntity.ok(studentService.getAllStudents());
+    @GetMapping()
+    public ResponseEntity<List<StudentDto>> getAll(){
+        return ResponseEntity.ok(studentService.getAll());
     }
 
-    @PostMapping("")
-    public ResponseEntity<StudentDto> addStudent(@RequestBody StudentDto student){
-        return ResponseEntity.ok(studentService.saveStudent(student));
+    @PostMapping()
+    public ResponseEntity<StudentDto> add(@RequestBody StudentDto student){
+        return ResponseEntity.ok(studentService.save(student));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> removeStudentById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(studentService.removeStudentById(id));
+    public ResponseEntity<String> removeById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(studentService.remove(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StudentDto> updateStudentById(@RequestBody StudentDto student,
+    public ResponseEntity<StudentDto> updateById(@RequestBody StudentDto student,
                                                         @PathVariable("id") Long id){
-        return ResponseEntity.ok(studentService.updateStudentById(id, student));
+        return ResponseEntity.ok(studentService.update(id, student));
     }
 }

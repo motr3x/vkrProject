@@ -23,23 +23,23 @@ public class VkrStageService {
         this.vkrService = vkrService;
     }
 
-    public List<VkrStageDto> getAllVkrStageByVkrId(Long id){
+    public List<VkrStageDto> getAllByVkrId(Long id){
         return vkrStageRepository.getAllVkrStageByVkr_Id(id).orElseThrow(() -> new VkrStageNotFoundException("Vkr stage with id " + id + " doesn't found"))
                 .stream().map(vkrStageMapper::vkrStageToVkrStageDto).toList();
     }
     //todo !!!!!
     @Transactional
-    public VkrStageDto saveVkrStageByVkr_Id(Long id, VkrStageDto vkrStageDto) {
-        vkrService.getVkrById(id);
+    public VkrStageDto saveByVkr_Id(Long id, VkrStageDto vkrStageDto) {
+        vkrService.getById(id);
         VkrStage vkrStage = vkrStageMapper.vkrStageDtoToVkrStage(vkrStageDto);
-        vkrStage.setVkr(vkrService.getVkrById(id));
+        vkrStage.setVkr(vkrService.getById(id));
         return vkrStageMapper.vkrStageToVkrStageDto(vkrStageRepository.save(vkrStage));
     }
 
     //todo Add validation to drop many if statement
     @Transactional
-    public VkrStageDto updateVkrStage(Long vkrId, Long stageId, VkrStageDto vkrStageDto) {
-        Vkr vkr = vkrService.getVkrById(vkrId);
+    public VkrStageDto update(Long vkrId, Long stageId, VkrStageDto vkrStageDto) {
+        Vkr vkr = vkrService.getById(vkrId);
         VkrStage vkrStage = vkr.getVkrStages().stream().filter(entity -> entity.getId().equals(stageId)).toList().get(0
         );
         if(vkrStageDto.getTitle() != null)
@@ -58,12 +58,12 @@ public class VkrStageService {
     }
 
     @Transactional
-    public String removeById(Long vkrId, Long stageId) {
+    public String remove(Long vkrId, Long stageId) {
         vkrStageRepository.removeVkrStageByIdAndVkr_Id(stageId, vkrId);
         return "VkrStage was delete";
     }
 
-    public VkrStageDto getVkrStageById(Long vkrId, Long stageId) {
+    public VkrStageDto getById(Long vkrId, Long stageId) {
         return vkrStageMapper.vkrStageToVkrStageDto(vkrStageRepository.getVkrStageByIdAndVkr_Id(stageId, vkrId).orElseThrow(() -> new VkrStageNotFoundException("VkrStage with id " + stageId + " doesn't found")));
     }
 }
