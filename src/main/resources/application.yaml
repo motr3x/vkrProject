@@ -1,7 +1,7 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -10,7 +10,7 @@ spring:
   application:
     name: vkr
   liquibase:
-    enabled: true
+    enabled: false
   datasource:
     url: jdbc:postgresql:${YOUR_URL_TO_DB}
     username: ${USER}
