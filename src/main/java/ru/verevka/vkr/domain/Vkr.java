@@ -29,7 +29,7 @@ public class Vkr {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "vkr")
+    @OneToOne(mappedBy = "vkr", cascade = CascadeType.ALL)
     private Student student;
 
     @ManyToOne
