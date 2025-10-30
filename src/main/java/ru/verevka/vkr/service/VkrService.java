@@ -65,6 +65,7 @@ public class VkrService {
         return vkrMapper.vkrToVkrDto(vkr);
     }
 
+    @Transactional
     public String remove(Long vkrId) {
         vkrRepository.removeById(getById(vkrId).getId());
         return "Vkr was deleted";

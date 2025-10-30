@@ -37,6 +37,7 @@ public class SupervisorsService {
                 .stream().map(studentMapper::studentToStudentDto).toList();
     }
 
+    @Transactional
     public SupervisorsDto save(SupervisorsCreateDto supervisorsCreateDto) {
         return supervisorsMapper.supervisorsToSupervisorsDto(supervisorsRepository.save(supervisorsMapper.supervisorCreateDtoToSupervisors(supervisorsCreateDto)));
     }
@@ -47,7 +48,6 @@ public class SupervisorsService {
         return "Supervisor was deleted";
     }
 
-    //todo Add validation to drop many if statement
     @Transactional
     public SupervisorsDto update(Long id, SupervisorsDto supervisorsDto) {
         Supervisors existingSupervisor = supervisorsRepository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor with id " + id + " in doesn't found"));

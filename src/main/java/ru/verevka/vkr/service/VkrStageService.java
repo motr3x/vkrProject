@@ -36,7 +36,6 @@ public class VkrStageService {
         return vkrStageMapper.vkrStageToVkrStageDto(vkrStageRepository.save(vkrStage));
     }
 
-    //todo Add validation to drop many if statement
     @Transactional
     public VkrStageDto update(Long vkrId, Long stageId, VkrStageDto vkrStageDto) {
         Vkr vkr = vkrService.getById(vkrId);
