@@ -33,11 +33,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> {
                     request.requestMatchers("/auth").permitAll();
                     request.requestMatchers("/registration").permitAll();
-                    request.requestMatchers("/secured").authenticated();
-                    request.requestMatchers("/api/supervisors/**").hasRole("SUPERVISOR");
-                    request.requestMatchers("/api/students/**").hasAnyRole("SUPERVISOR","STUDENT");
-                    request.requestMatchers("/api/vkr/**").hasRole("SUPERVISOR");
-                    request.requestMatchers("/api/vkrStages/**").hasRole("SUPERVISOR");
+                    request.requestMatchers("/api/supervisors/**").hasAnyRole("SUPERVISOR", "ADMIN");
+                    request.requestMatchers("/api/students/**").hasAnyRole("STUDENT","SUPERVISOR", "ADMIN");
+                    request.requestMatchers("/api/vkr/**").hasAnyRole("STUDENT","SUPERVISOR", "ADMIN");
+                    request.requestMatchers("/api/vkrStages/**").hasAnyRole("STUDENT","SUPERVISOR", "ADMIN");
                 }).sessionManagement(s-> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class).build();

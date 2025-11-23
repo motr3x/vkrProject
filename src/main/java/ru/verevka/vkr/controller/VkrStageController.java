@@ -2,6 +2,7 @@ package ru.verevka.vkr.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,23 +25,27 @@ public class VkrStageController {
         this.vkrStageService = vkrStageService;
     }
 
+    @PreAuthorize("hasAnyRole('STUDENT', 'SUPERVISOR', 'ADMIN')")
     @GetMapping("/{vkrId}")
     public ResponseEntity<List<VkrStageDto>> getAllByVkrId(@PathVariable Long vkrId){
         return ResponseEntity.ok(vkrStageService.getAllByVkrId(vkrId));
     }
 
+    @PreAuthorize("hasAnyRole('STUDENT', 'SUPERVISOR', 'ADMIN')")
     @GetMapping("/{vkrId}/stage/{stageId}")
     public ResponseEntity<VkrStageDto> getById(@PathVariable Long vkrId,
                                                        @PathVariable Long stageId){
         return ResponseEntity.ok(vkrStageService.getById(vkrId, stageId));
     }
 
+    @PreAuthorize("hasAnyRole('SUPERVISOR', 'ADMIN')")
     @PostMapping("/{vkrId}")
     public ResponseEntity<VkrStageDto> create(@PathVariable Long vkrId,
                                               @Valid @RequestBody VkrStageDto vkrStageDto){
         return ResponseEntity.ok(vkrStageService.saveByVkr_Id(vkrId, vkrStageDto));
     }
 
+    @PreAuthorize("hasAnyRole('SUPERVISOR', 'ADMIN')")
     @PutMapping("/{vkrId}/stage/{stageId}")
     public ResponseEntity<VkrStageDto> update(@PathVariable Long vkrId,
                                                       @PathVariable Long stageId,
@@ -48,6 +53,7 @@ public class VkrStageController {
         return ResponseEntity.ok(vkrStageService.update(vkrId, stageId, vkrStageDto));
     }
 
+    @PreAuthorize("hasAnyRole('SUPERVISOR', 'ADMIN')")
     @DeleteMapping("/{vkrId}/stage/{stageId}")
     public ResponseEntity<String> delete(@PathVariable Long vkrId,
                                                  @PathVariable Long stageId){
