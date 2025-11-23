@@ -27,6 +27,7 @@ public class AuthService {
         this.authenticationManager = authenticationManager;
     }
 
+    //todo need unit test
     public ResponseEntity<?> createAuthToken(JwtRequest authRequest){
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
@@ -39,6 +40,7 @@ public class AuthService {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
+    //todo need unit test
     public ResponseEntity<?> createNewUser(RegistrationUserDto registrationUserDto){
         System.out.println(registrationUserDto.isIsSupervisor());
         if(!registrationUserDto.getPassword().equals(registrationUserDto.getConfirmPassword()))

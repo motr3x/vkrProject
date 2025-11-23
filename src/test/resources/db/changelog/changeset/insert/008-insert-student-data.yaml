@@ -1,0 +1,110 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8
+      author: your_name
+      changes:
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: "Anna"
+              - column:
+                  name: second_name
+                  value: "Smirnova"
+              - column:
+                  name: middle_name
+                  value: "Alexeevna"
+              - column:
+                  name: characteristic
+                  value: "Excellent student, active in research"
+              - column:
+                  name: group_name
+                  value: "CS-401"
+              - column:
+                  name: vkr_id
+                  value: 1
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: "Maxim"
+              - column:
+                  name: second_name
+                  value: "Kozlov"
+              - column:
+                  name: middle_name
+                  value: "Sergeevich"
+              - column:
+                  name: characteristic
+                  value: "Good practical skills"
+              - column:
+                  name: group_name
+                  value: "CS-402"
+              - column:
+                  name: vkr_id
+                  value: 2
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: "Olga"
+              - column:
+                  name: second_name
+                  value: "Morozova"
+              - column:
+                  name: middle_name
+                  value: "Andreevna"
+              - column:
+                  name: characteristic
+                  value: "Creative approach to problem solving"
+              - column:
+                  name: group_name
+                  value: "CS-401"
+              - column:
+                  name: vkr_id
+                  value: 3
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: "Sergey"
+              - column:
+                  name: second_name
+                  value: "Orlov"
+              - column:
+                  name: middle_name
+                  value: "Vladimirovich"
+              - column:
+                  name: characteristic
+                  value: "Strong theoretical background"
+              - column:
+                  name: group_name
+                  value: "CS-403"
+              - column:
+                  name: vkr_id
+                  value: 4
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: "Ekaterina"
+              - column:
+                  name: second_name
+                  value: "Zaitseva"
+              - column:
+                  name: middle_name
+                  value: "Igorevna"
+              - column:
+                  name: characteristic
+                  value: "Good team worker"
+              - column:
+                  name: group_name
+                  value: "CS-402"
+              - column:
+                  name: vkr_id
+                  value: 5

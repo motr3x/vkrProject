@@ -1,0 +1,80 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6
+      author: your_name
+      changes:
+        - insert:
+            tableName: supervisors
+            columns:
+              - column:
+                  name: first_name
+                  value: "Ivan"
+              - column:
+                  name: second_name
+                  value: "Petrov"
+              - column:
+                  name: middle_name
+                  value: "Sidorovich"
+              - column:
+                  name: academic_degree
+                  value: "PhD"
+        - insert:
+            tableName: supervisors
+            columns:
+              - column:
+                  name: first_name
+                  value: "Maria"
+              - column:
+                  name: second_name
+                  value: "Ivanova"
+              - column:
+                  name: middle_name
+                  value: "Pavlovna"
+              - column:
+                  name: academic_degree
+                  value: "Doctor of Sciences"
+        - insert:
+            tableName: supervisors
+            columns:
+              - column:
+                  name: first_name
+                  value: "Alexey"
+              - column:
+                  name: second_name
+                  value: "Sokolov"
+              - column:
+                  name: middle_name
+                  value: "Viktorovich"
+              - column:
+                  name: academic_degree
+                  value: "PhD"
+        - insert:
+            tableName: supervisors
+            columns:
+              - column:
+                  name: first_name
+                  value: "Elena"
+              - column:
+                  name: second_name
+                  value: "Kuznetsova"
+              - column:
+                  name: middle_name
+                  value: "Dmitrievna"
+              - column:
+                  name: academic_degree
+                  value: "Candidate of Sciences"
+        - insert:
+            tableName: supervisors
+            columns:
+              - column:
+                  name: first_name
+                  value: "Dmitry"
+              - column:
+                  name: second_name
+                  value: "Volkov"
+              - column:
+                  name: middle_name
+                  value: "Andreevich"
+              - column:
+                  name: academic_degree
+                  value: "PhD"

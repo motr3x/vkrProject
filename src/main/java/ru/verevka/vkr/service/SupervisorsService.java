@@ -48,6 +48,7 @@ public class SupervisorsService {
         return "Supervisor was deleted";
     }
 
+    //todo need unit test
     @Transactional
     public SupervisorsDto update(Long id, SupervisorsDto supervisorsDto) {
         Supervisors existingSupervisor = supervisorsRepository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor with id " + id + " in doesn't found"));

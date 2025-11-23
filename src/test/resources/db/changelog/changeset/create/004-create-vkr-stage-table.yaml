@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: motr3x
+      changes:
+        - createTable:
+            tableName: vkr_stage
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: vkr_id
+                  type: BIGINT
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  name: planned_deadline
+                  type: DATETIME
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: stage_progress
+                  type: DOUBLE
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: supervisor_feedback
+                  type: TEXT
+            constraints:
+              - foreignKey:
+                  name: fk_vkr_stage_vkr
+                  referencedTableName: vkr
+                  referencedColumnNames: id
+                  columnNames: vkr_id
+                  onDelete: CASCADE

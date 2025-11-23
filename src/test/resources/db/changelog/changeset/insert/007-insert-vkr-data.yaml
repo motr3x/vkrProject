@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7
+      author: your_name
+      changes:
+        - insert:
+            tableName: vkr
+            columns:
+              - column:
+                  name: supervisors_id
+                  value: 1
+              - column:
+                  name: title
+                  value: "Machine Learning Algorithms for Image Recognition"
+              - column:
+                  name: overall_progress
+                  value: 75.5
+        - insert:
+            tableName: vkr
+            columns:
+              - column:
+                  name: supervisors_id
+                  value: 2
+              - column:
+                  name: title
+                  value: "Blockchain Technology in Financial Systems"
+              - column:
+                  name: overall_progress
+                  value: 60.0
+        - insert:
+            tableName: vkr
+            columns:
+              - column:
+                  name: supervisors_id
+                  value: 3
+              - column:
+                  name: title
+                  value: "IoT Applications in Smart Home Systems"
+              - column:
+                  name: overall_progress
+                  value: 45.2
+        - insert:
+            tableName: vkr
+            columns:
+              - column:
+                  name: supervisors_id
+                  value: 4
+              - column:
+                  name: title
+                  value: "Cybersecurity in Cloud Computing"
+              - column:
+                  name: overall_progress
+                  value: 90.0
+        - insert:
+            tableName: vkr
+            columns:
+              - column:
+                  name: supervisors_id
+                  value: 5
+              - column:
+                  name: title
+                  value: "Data Analysis Methods for Business Intelligence"
+              - column:
+                  name: overall_progress
+                  value: 30.8

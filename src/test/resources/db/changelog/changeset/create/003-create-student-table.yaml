@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: motr3x
+      changes:
+        - createTable:
+            tableName: student
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  name: second_name
+                  type: VARCHAR(255)
+              - column:
+                  name: middle_name
+                  type: VARCHAR(255)
+              - column:
+                  name: characteristic
+                  type: TEXT
+              - column:
+                  name: group_name
+                  type: VARCHAR(255)
+              - column:
+                  name: vkr_id
+                  type: BIGINT
+                  constraints:
+                    unique: true
+                    nullable: true
+            constraints:
+              - foreignKey:
+                  name: fk_student_vkr
+                  referencedTableName: vkr
+                  referencedColumnNames: id
+                  columnNames: vkr_id
+                  onDelete: SET NULL

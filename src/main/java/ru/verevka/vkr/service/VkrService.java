@@ -51,6 +51,7 @@ public class VkrService {
         return vkrMapper.vkrToVkrDto(vkrRepository.save(vkrMapper.VkrDtoToVkr(vkrDto)));
     }
 
+    //todo need unit test
     @Transactional
     public VkrDto update(Long vkrId, VkrDto vkrDto) {
         Vkr vkr = getById(vkrId);

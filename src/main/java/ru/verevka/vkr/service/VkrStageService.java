@@ -27,7 +27,8 @@ public class VkrStageService {
         return vkrStageRepository.getAllVkrStageByVkr_Id(id).orElseThrow(() -> new VkrStageNotFoundException("Vkr stage with id " + id + " doesn't found"))
                 .stream().map(vkrStageMapper::vkrStageToVkrStageDto).toList();
     }
-    //todo !!!!!
+
+    //todo need unit test
     @Transactional
     public VkrStageDto saveByVkr_Id(Long id, VkrStageDto vkrStageDto) {
         vkrService.getById(id);
@@ -36,6 +37,7 @@ public class VkrStageService {
         return vkrStageMapper.vkrStageToVkrStageDto(vkrStageRepository.save(vkrStage));
     }
 
+    //todo need unit test
     @Transactional
     public VkrStageDto update(Long vkrId, Long stageId, VkrStageDto vkrStageDto) {
         Vkr vkr = vkrService.getById(vkrId);

@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: motr3x
+      changes:
+        - createTable:
+            tableName: vkr
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: supervisors_id
+                  type: BIGINT
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  name: final_grade
+                  type: BIGINT
+              - column:
+                  name: overall_progress
+                  type: DOUBLE
+              - column:
+                  name: last_update
+                  type: DATETIME
+            constraints:
+              - foreignKey:
+                  name: fk_vkr_supervisors
+                  referencedTableName: supervisors
+                  referencedColumnNames: id
+                  columnNames: supervisors_id
+                  onDelete: CASCADE

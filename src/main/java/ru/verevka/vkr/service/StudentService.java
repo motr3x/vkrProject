@@ -36,6 +36,7 @@ public class StudentService {
         studentRepository.removeById(studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student with id " + id + " in doesn't found")).getId());
         return "Student was deleted";
     }
+
     @Transactional
     public StudentDto save(StudentDto student){
         Vkr newVkr = new Vkr();

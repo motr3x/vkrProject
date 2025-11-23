@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/create/001-create-supervisors-table.yaml
+  - include:
+      file: db/changelog/changeset/create/002-create-vkr-table.yaml
+  - include:
+      file: db/changelog/changeset/create/003-create-student-table.yaml
+  - include:
+      file: db/changelog/changeset/create/004-create-vkr-stage-table.yaml
+  - include:
+      file: db/changelog/changeset/insert/006-insert-supervisors-data.yaml
+  - include:
+      file: db/changelog/changeset/insert/007-insert-vkr-data.yaml
+  - include:
+      file: db/changelog/changeset/insert/008-insert-student-data.yaml
+  - include:
+      file: db/changelog/changeset/insert/009-update-vkr-with-student-ids.yaml
+  - include:
+      file: db/changelog/changeset/insert/010-insert-vkr-stage-data.yaml

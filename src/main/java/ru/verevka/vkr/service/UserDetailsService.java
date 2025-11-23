@@ -36,6 +36,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     }
 
 
+    //todo need unit test
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) {
@@ -56,6 +57,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         );
     }
 
+    //todo need unit test
     public Supervisors createNewSupervisor(RegistrationUserDto registrationUserDto) {
         Supervisors supervisors = new Supervisors();
         supervisors.setEmail(registrationUserDto.getEmail());
@@ -67,6 +69,8 @@ public class UserDetailsService implements org.springframework.security.core.use
 
         return supervisorsRepository.save(supervisors);
     }
+
+    //todo need unit test
     public Student createNewStudent(RegistrationUserDto registrationUserDto){
         Student student = new Student();
         student.setEmail(registrationUserDto.getEmail());

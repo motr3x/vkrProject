@@ -1,0 +1,116 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: your_name
+      changes:
+        - insert:
+            tableName: vkr_stage
+            columns:
+              - column:
+                  name: vkr_id
+                  value: 1
+              - column:
+                  name: title
+                  value: "Literature Review"
+              - column:
+                  name: planned_deadline
+                  value: "2024-02-15 23:59:59"
+              - column:
+                  name: status
+                  value: "COMPLETED"
+              - column:
+                  name: stage_progress
+                  value: 100.0
+              - column:
+                  name: description
+                  value: "Review of existing machine learning algorithms"
+              - column:
+                  name: supervisor_feedback
+                  value: "Well done, comprehensive review"
+        - insert:
+            tableName: vkr_stage
+            columns:
+              - column:
+                  name: vkr_id
+                  value: 1
+              - column:
+                  name: title
+                  value: "Data Collection"
+              - column:
+                  name: planned_deadline
+                  value: "2024-03-20 23:59:59"
+              - column:
+                  name: status
+                  value: "IN_PROGRESS"
+              - column:
+                  name: stage_progress
+                  value: 80.0
+              - column:
+                  name: description
+                  value: "Collecting image datasets for training"
+        - insert:
+            tableName: vkr_stage
+            columns:
+              - column:
+                  name: vkr_id
+                  value: 2
+              - column:
+                  name: title
+                  value: "Theoretical Framework"
+              - column:
+                  name: planned_deadline
+                  value: "2024-02-28 23:59:59"
+              - column:
+                  name: status
+                  value: "COMPLETED"
+              - column:
+                  name: stage_progress
+                  value: 100.0
+              - column:
+                  name: description
+                  value: "Developing blockchain theoretical model"
+        - insert:
+            tableName: vkr_stage
+            columns:
+              - column:
+                  name: vkr_id
+                  value: 3
+              - column:
+                  name: title
+                  value: "Hardware Setup"
+              - column:
+                  name: planned_deadline
+                  value: "2024-03-10 23:59:59"
+              - column:
+                  name: status
+                  value: "NOT_STARTED"
+              - column:
+                  name: stage_progress
+                  value: 0.0
+              - column:
+                  name: description
+                  value: "Setting up IoT devices for testing"
+        - insert:
+            tableName: vkr_stage
+            columns:
+              - column:
+                  name: vkr_id
+                  value: 4
+              - column:
+                  name: title
+                  value: "Security Analysis"
+              - column:
+                  name: planned_deadline
+                  value: "2024-01-30 23:59:59"
+              - column:
+                  name: status
+                  value: "COMPLETED"
+              - column:
+                  name: stage_progress
+                  value: 100.0
+              - column:
+                  name: description
+                  value: "Analyzing cloud security vulnerabilities"
+              - column:
+                  name: supervisor_feedback
+                  value: "Excellent analysis, very detailed"
