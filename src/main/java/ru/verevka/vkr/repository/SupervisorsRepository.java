@@ -14,4 +14,5 @@ public interface SupervisorsRepository extends JpaRepository<Supervisors, Long> 
     @Query(value = "SELECT student.* FROM student INNER JOIN vkr ON student.vkr_id = vkr.id AND vkr.supervisors_id=?1", nativeQuery = true)
     Optional<List<Student>> getAllStudentById(Long id);
     void removeById(Long id);
+    Optional<Supervisors> findByEmail(String email);
 }

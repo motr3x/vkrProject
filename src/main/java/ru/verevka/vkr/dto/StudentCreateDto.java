@@ -9,19 +9,21 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class SupervisorsCreateDto {
+@NoArgsConstructor
+public class StudentCreateDto {
     @NotBlank(message = "FirstName should be!")
     private String firstName;
     @NotBlank(message = "SecondName should be!")
     private String secondName;
     private String middleName;
-    private String academicDegree;
+    private String characteristic;
+    @NotBlank(message = "GroupName should be!")
+    private String groupName;
+    private String vkrTitle;
     @Email
     @NotBlank(message = "email should be!")
     private String email;
     @NotBlank(message = "Password should be!")
     private String passwordHash;
 }
-

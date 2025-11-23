@@ -1,38 +1,37 @@
 databaseChangeLog:
   - changeSet:
       id: 2
-      author: your_name
+      author: motr3x
       changes:
         - createTable:
             tableName: vkr
             columns:
               - column:
                   name: id
-                  type: bigint
+                  type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: supervisors_id
-                  type: bigint
+                  type: BIGINT
               - column:
                   name: title
-                  type: varchar(255)
+                  type: VARCHAR(255)
               - column:
                   name: final_grade
-                  type: bigint
+                  type: BIGINT
               - column:
                   name: overall_progress
-                  type: double
-                  defaultValue: 0.0
+                  type: DOUBLE
               - column:
                   name: last_update
-                  type: datetime
-                  defaultValue: now()
-        - addForeignKeyConstraint:
-            baseTableName: vkr
-            baseColumnNames: supervisors_id
-            referencedTableName: supervisors
-            referencedColumnNames: id
-            constraintName: fk_vkr_supervisors
+                  type: DATETIME
+            constraints:
+              - foreignKey:
+                  name: fk_vkr_supervisors
+                  referencedTableName: supervisors
+                  referencedColumnNames: id
+                  columnNames: supervisors_id
+                  onDelete: CASCADE

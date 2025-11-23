@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
     void removeById(Long id);
+    Optional<Student> findByEmail(String email);
 }

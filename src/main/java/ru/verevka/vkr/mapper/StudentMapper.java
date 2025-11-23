@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import ru.verevka.vkr.domain.Student;
+import ru.verevka.vkr.dto.StudentCreateDto;
 import ru.verevka.vkr.dto.StudentDto;
 
 @Mapper(componentModel = "spring")
@@ -14,4 +15,7 @@ public interface StudentMapper {
     @Mappings({
             @Mapping(source = "vkrTitle", target = "vkr.title")})
     Student studentDtoToStudent(StudentDto studentDto);
+    @Mappings({
+            @Mapping(source = "vkrTitle", target = "vkr.title")})
+    Student studentCreateDtoToStudent(StudentCreateDto studentCreateDto);
 }

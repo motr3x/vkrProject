@@ -1,7 +1,10 @@
+server:
+  servlet:
+    context-path: /demo
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -18,3 +21,6 @@ spring:
     driver-class-name: org.postgresql.Driver
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+jwt:
+  secret: 821930213jdwfgsa72g32v1tgw4edb213123hbxs
+  lifetime: 30m

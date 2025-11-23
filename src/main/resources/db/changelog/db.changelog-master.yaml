@@ -8,8 +8,6 @@ databaseChangeLog:
   - include:
       file: db/changelog/changeset/create/004-create-vkr-stage-table.yaml
   - include:
-      file: db/changelog/changeset/create/005-add-vkr-student-constraint.yaml
-  - include:
       file: db/changelog/changeset/insert/006-insert-supervisors-data.yaml
   - include:
       file: db/changelog/changeset/insert/007-insert-vkr-data.yaml
