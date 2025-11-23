@@ -16,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.List;
+
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
@@ -29,16 +31,16 @@ public class SecurityConfig {
                 csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
-                    request.requestMatchers("/unsecured").permitAll();
+                    request.requestMatchers("/auth").permitAll();
+                    request.requestMatchers("/registration").permitAll();
                     request.requestMatchers("/secured").authenticated();
-                    request.requestMatchers("/admin")
-                            .hasRole("ADMIN");
-                    request.anyRequest().permitAll();
+                    request.requestMatchers("/api/supervisors/**").hasRole("SUPERVISOR");
+                    request.requestMatchers("/api/students/**").hasAnyRole("SUPERVISOR","STUDENT");
+                    request.requestMatchers("/api/vkr/**").hasRole("SUPERVISOR");
+                    request.requestMatchers("/api/vkrStages/**").hasRole("SUPERVISOR");
                 }).sessionManagement(s-> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class).build();
-
-
     }
 
     @Bean
