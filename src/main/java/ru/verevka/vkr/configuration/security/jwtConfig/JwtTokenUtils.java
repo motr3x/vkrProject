@@ -1,4 +1,4 @@
-package ru.verevka.vkr.configuration.security;
+package ru.verevka.vkr.configuration.security.jwtConfig;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

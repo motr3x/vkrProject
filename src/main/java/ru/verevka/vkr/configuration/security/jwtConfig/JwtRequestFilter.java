@@ -1,4 +1,4 @@
-package ru.verevka.vkr.configuration.security;
+package ru.verevka.vkr.configuration.security.jwtConfig;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
