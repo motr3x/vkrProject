@@ -13,4 +13,14 @@ public class RegistrationUserDto {
     private String confirmPassword;
     @JsonProperty
     private boolean IsSupervisor;
+
+    public RegistrationUserDto(String firstName, String secondName, String middleName, String email, String password, String confirmPassword, boolean isSupervisor) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.middleName = middleName;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        IsSupervisor = isSupervisor;
+    }
 }

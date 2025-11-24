@@ -42,7 +42,6 @@ public class AuthService {
 
     //todo need unit test
     public ResponseEntity<?> createNewUser(RegistrationUserDto registrationUserDto){
-        System.out.println(registrationUserDto.isIsSupervisor());
         if(!registrationUserDto.getPassword().equals(registrationUserDto.getConfirmPassword()))
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Password not equals"), HttpStatus.BAD_REQUEST);
 

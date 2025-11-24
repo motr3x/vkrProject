@@ -7,16 +7,23 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import static org.hamcrest.CoreMatchers.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import ru.verevka.vkr.domain.Student;
+import ru.verevka.vkr.domain.Vkr;
 import ru.verevka.vkr.dto.StudentDto;
 import ru.verevka.vkr.exception.StudentNotFoundException;
 import ru.verevka.vkr.mapper.StudentMapper;
 import ru.verevka.vkr.repository.StudentRepository;
 
+import java.util.List;
 import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -32,31 +39,58 @@ class StudentServiceTest {
 
     @BeforeEach
     void up(){
-        Optional<Student> empty = Optional.empty();
-        Mockito.when(studentRepository.findById(ID)).thenReturn(empty);
+            Optional<Student> empty = Optional.empty();
+        when(studentRepository.findById(ID)).thenReturn(empty);
     }
 
     @Test
-    void getByIdShouldThrowsException(){
-        Assertions.assertThrows(StudentNotFoundException.class, () -> studentService.getById(ID));
+    void getAllShouldReturnListOfStudentDto() {
+        List<StudentDto> studentDtoList = List.of(new StudentDto());
+        List<Student> studentList = List.of(new Student());
+
+        when(studentRepository.findAll()).thenReturn(studentList);
+        when(studentMapper.studentToStudentDto(any())).thenReturn(studentDtoList.get(0));
+
+        Assertions.assertIterableEquals(studentDtoList, studentService.getAll());
     }
 
     @Test
-    void removeShouldThrowsException(){
-        Assertions.assertThrows(StudentNotFoundException.class, () -> studentService.remove(ID));
+    void saveShouldBeSuccess(){
+        StudentDto studentDto = new StudentDto();
+        studentDto.setVkrTitle("testVkr");
+        Student student = new Student();
+        Vkr newVkr = new Vkr();
+        newVkr.setTitle(studentDto.getVkrTitle());
+        when(studentMapper.studentDtoToStudent(studentDto)).thenReturn(student);
+        when(studentRepository.save(student)).thenReturn(student);
+        when(studentMapper.studentToStudentDto(student)).thenReturn(studentDto);
+        Assertions.assertEquals(studentDto, studentService.save(studentDto));
     }
 
     @Test
-    void studentUpdateThrowsException(){
+    void removeShouldReturnMessage(){
+        Optional<Student> student = Optional.of(new Student());
+        String message = "Student was deleted";
+
+        when(studentRepository.findById(ID)).thenReturn(student);
+        doNothing().when(studentRepository).removeById(ID);
+
+        Assertions.assertEquals(message, studentService.remove(ID));
+    }
+
+    @Test
+    void methodsThrowsStudentNotFoundException(){
         Assertions.assertThrows(StudentNotFoundException.class, () -> studentService.update(ID, null));
+        Assertions.assertThrows(StudentNotFoundException.class, () -> studentService.getById(ID));
+        Assertions.assertThrows(StudentNotFoundException.class, () -> studentService.remove(ID));
     }
 
     @Test
     void getByIdShouldReturnStudentSuccess(){
         Optional<Student> student = Optional.of(new Student());
         StudentDto studentDto = new StudentDto();
-        Mockito.when(studentRepository.findById(ID)).thenReturn(student);
-        Mockito.when(studentMapper.studentToStudentDto(student.get())).thenReturn(studentDto);
+        when(studentRepository.findById(ID)).thenReturn(student);
+        when(studentMapper.studentToStudentDto(student.get())).thenReturn(studentDto);
         Assertions.assertEquals(studentDto, studentService.getById(ID));
     }
 
@@ -75,7 +109,7 @@ class StudentServiceTest {
         StudentDto studentDto = new StudentDto(updateStudent.getFirstName(), updateStudent.getSecondName(), updateStudent.getMiddleName(),
                 updateStudent.getCharacteristic(), updateStudent.getGroupName(), null);
 
-        Mockito.when(studentMapper.studentToStudentDto(existingStudent)).thenReturn(newStudent);
+        when(studentMapper.studentToStudentDto(existingStudent)).thenReturn(newStudent);
         Assertions.assertEquals(studentDto.getCharacteristic(), newStudent.getCharacteristic());
         Assertions.assertEquals(studentDto.getFirstName(), newStudent.getFirstName());
         Assertions.assertEquals(studentDto.getGroupName(), newStudent.getGroupName());

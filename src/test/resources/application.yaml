@@ -12,12 +12,12 @@ spring:
   liquibase:
     enabled: false
   datasource:
-    url: jdbc:postgresql:${YOUR_URL_TO_DB}
-    username: ${USER}
-    password: ${PASS}
+    url: jdbc:postgresql://127.0.0.1:5431/vkr_db
+    username: vkr_user
+    password: vkr
     driver-class-name: org.postgresql.Driver
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 jwt:
-  secret: ${SECRET}
+  secret: 821930213jdDSAgsa72g32vdsa2xZZ1tgw4edb213123hbxs
   lifetime: 30m

@@ -22,7 +22,7 @@ public class VkrService {
     }
 
     public Vkr getByTitle(String title){
-        return vkrRepository.findByTitle(title).orElseThrow();
+        return vkrRepository.findByTitle(title).orElseThrow(()->new VkrNotFoundException("Vkr with this title " + title + " doesn't found"));
     }
 
 

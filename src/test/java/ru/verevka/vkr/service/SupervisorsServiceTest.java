@@ -20,9 +20,14 @@ import ru.verevka.vkr.mapper.StudentMapper;
 import ru.verevka.vkr.mapper.SupervisorsMapper;
 import ru.verevka.vkr.repository.SupervisorsRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 class SupervisorsServiceTest {
@@ -46,19 +51,44 @@ class SupervisorsServiceTest {
     }
 
     @Test
-    void getByIdShouldThrowsException(){
+    void removeShouldReturnMessage(){
+        Optional<Supervisors> supervisors = Optional.of(new Supervisors());
+        String message = "Supervisor was deleted";
+
+        when(supervisorsRepository.findById(ID)).thenReturn(supervisors);
+        doNothing().when(supervisorsRepository).removeById(ID);
+
+        Assertions.assertEquals(message, supervisorsService.remove(ID));
+    }
+
+    @Test
+    void getAllShouldReturnListOfSupervisorDto() {
+        List<SupervisorsDto> supervisorsDtoList = List.of(new SupervisorsDto());
+        List<Supervisors> supervisorsList = List.of(new Supervisors());
+
+        when(supervisorsRepository.findAll()).thenReturn(supervisorsList);
+        when(supervisorsMapper.supervisorsToSupervisorsDto(any())).thenReturn(supervisorsDtoList.get(0));
+
+        Assertions.assertIterableEquals(supervisorsDtoList, supervisorsService.getAll());
+    }
+
+    @Test
+    void getAllStudentShouldReturnListOfStudentDto() {
+        List<StudentDto> studentDtoList = List.of(new StudentDto());
+        Optional<List<Student>> studentList = Optional.of(List.of(new Student()));
+
+        when(supervisorsRepository.getAllStudentById(ID)).thenReturn(studentList);
+        when(studentMapper.studentToStudentDto(any())).thenReturn(studentDtoList.get(0));
+
+        Assertions.assertIterableEquals(studentDtoList, supervisorsService.getAllStudent(ID));
+    }
+
+    @Test
+    void methodsShouldThrowsSupervisorNotFoundException(){
         Assertions.assertThrows(SupervisorNotFoundException.class, () -> supervisorsService.getById(ID));
-    }
-
-    @Test
-    void removeShouldThrowsException(){
+        Assertions.assertThrows(SupervisorNotFoundException.class, () -> supervisorsService.getById(ID));
+        Assertions.assertThrows(StudentNotFoundException.class, () -> supervisorsService.getAllStudent(ID));
         Assertions.assertThrows(SupervisorNotFoundException.class, () -> supervisorsService.remove(ID));
-    }
-
-    @Test
-    void supervisorsUpdateThrowsException(){
         Assertions.assertThrows(SupervisorNotFoundException.class, () -> supervisorsService.update(ID, null));
     }
-
-
 }
